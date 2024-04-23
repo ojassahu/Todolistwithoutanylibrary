@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <style>*{
+        margin: 0;
+        padding: 0%;
+        text-align: center;
+        justify-content: center;
+    }
+    ul{
+        list-style-type:none ;
+        
+    }
+    body{
+        background-color: wheat;
+        font-family: cursive,system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .panels{
+        display: flex;
+        font-size: large;
+    }
+    input.t{
+        width: 20px;
+        height: 20px;
+        margin-right: 20px;
+    }
+    li{
+        text-align:left ;
+        margin-left: 20px;
+    }
+    .panel{
+        height: auto;
+        width: auto;
+        background-color: #fff;
+        margin: 10px;
+        min-height: 250px;
+        min-width: 250px;
+    }
+    button{
+        background-color: blue;
+        color: #fff;
+        border:0 ;
+        border-radius: 20px;
+        height: 40px;
+        width: 90px;
+        font-size: large;
+    }</style>
+</head>
+<body>
+    <header>
+        <h1>To do List</h1>
+    </header>
+    <div class="panels">
+        <div id="task" class="taskbox">
+            <div class="panel">Tasks
+            <ul id="taskList">
+                
+            </ul>
+            <input type="text" id="textInput" placeholder="task">
+            </div>
+            <button onclick="add()">+ Add</button>
+        </div>
+        <div id="comp" class="panel">
+           Completed
+           <ul id="completed">
+            
+           </ul>
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <a href="page2.html">page2</a>
+    <script>
+
+        
+let n =1;
+function add(){
+    var list =document.getElementById("taskList");
+    var listitem=document.createElement("li");
+    var checkbox=document.createElement("input");
+    checkbox.type="checkbox";
+    checkbox.className="t";
+
+    var textInput = document.getElementById("textInput");
+    var textnode=document.createTextNode(textInput.value);
+    
+    if(textInput.value==""){}
+    else{
+    listitem.append(checkbox);
+    listitem.append(textnode);
+    list.appendChild(listitem);}
+
+    checkbox.addEventListener('change',function(){
+        if(this.checked){
+            var w= this.parentNode.textContent.trim();
+            list.removeChild(this.parentNode);
+            del(w);
+        }
+        
+    })
+    textInput.value="";
+    textInput.focus();
+    
+}
+function del(x){
+   console.log("deleting task",x);
+    var compList = document.getElementById("completed");
+    var taskc=document.createElement("li");
+    taskc.textContent=n+" . "+x;
+    compList.appendChild(taskc);
+    n++;
+}
+
+
+
+    </script>
+</body>
+</html>
